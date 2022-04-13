@@ -39,11 +39,13 @@ public class DateChangeTest {
         $("[data-test-id=agreement]").click();
         $$("button").find(Condition.exactText("Запланировать")).click();
         $("[data-test-id='success-notification']").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__content").shouldHave(Condition.ownText(firstMeetingDate));
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(secondMeetingDate);
         $$("button").find(Condition.exactText("Запланировать")).click();
         $("[data-test-id='replan-notification'] button").click();
         $("[data-test-id='success-notification']").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $(".notification__content").shouldHave(Condition.ownText(secondMeetingDate));
     }
 }
